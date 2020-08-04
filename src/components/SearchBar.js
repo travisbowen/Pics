@@ -3,19 +3,23 @@ import React from "react";
 class SearchBar extends React.Component {
 	// Input search bar term
 	state = {
-		searchTerm: null,
+		searchTerm: "",
 	};
 
 	// Input in search bar function
-	onInputChange(event) {
+	onInputChange = (event) => {
 		this.setState({
 			searchTerm: event.target.value,
 		});
-	}
+	};
 
-	// Prevent form from reloading when hitting enter
+	// Submits when user hits enter after inputting term
 	onFormSubmit = (event) => {
+		// Prevents form from reloading when hitting enter
 		event.preventDefault();
+
+		// Calling App function passed in through props with search bar term
+		this.props.onSubmit(this.state.searchTerm);
 	};
 
 	render() {
